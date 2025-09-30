@@ -1,0 +1,26 @@
+@model IEnumerable<FastEquipmentTool.Models.EquipmentRequest>
+<h2>Requests</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Equipment</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.EquipmentType</td>
+            <td>@r.Name</td>
+            <td>@r.Role</td>
+            <td>
+                <button class="btn btn-success">Accept</button>
+                <button class="btn btn-danger">Deny</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

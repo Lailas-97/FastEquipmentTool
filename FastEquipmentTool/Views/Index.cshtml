@@ -1,5 +1,59 @@
-@{
-    ViewData["Title"] = "Request Form";
-}
-<h1>Request Form</h1>
-<p>The request form with validation appears here (Milestone 3).</p>
+@model FastEquipmentTool.Models.EquipmentRequest
+@{ ViewData["Title"] = "Request Form"; }
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Submit" method="post" novalidate>
+  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+  <div class="mb-3">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Phone" class="form-label"></label>
+    <input asp-for="Phone" class="form-control" placeholder="905-555-1234" />
+    <span asp-validation-for="Phone" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Role" class="form-label"></label>
+    <select asp-for="Role" class="form-select"
+            asp-items="Html.GetEnumSelectList<FastEquipmentTool.Models.UserRole>()">
+      <option value="">-- select role --</option>
+    </select>
+    <span asp-validation-for="Role" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="EquipmentType" class="form-label"></label>
+    <select asp-for="EquipmentType" class="form-select"
+            asp-items="Html.GetEnumSelectList<FastEquipmentTool.Models.EquipmentType>()">
+      <option value="">-- select equipment --</option>
+    </select>
+    <span asp-validation-for="EquipmentType" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="RequestDetails" class="form-label"></label>
+    <textarea asp-for="RequestDetails" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="RequestDetails" class="text-danger"></span>
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="DurationDays" class="form-label"></label>
+    <input asp-for="DurationDays" class="form-control" />
+    <span asp-validation-for="DurationDays" class="text-danger"></span>
+  </div>
+
+  <button class="btn btn-primary">Submit Request</button>
+</form>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
